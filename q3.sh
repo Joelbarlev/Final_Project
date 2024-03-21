@@ -5,9 +5,9 @@ word_bank=$(curl https://raw.githubusercontent.com/dwyl/english-words/master/wor
 
 # Check tha two inputs where entered correctly
 
-# Catching the inputs into parameters
-word=$1
-colors=$2
+# Catching the inputs into parameters in lower-case
+word=$(echo "$1" | tr '[:upper:]' '[:lower:]')
+colors=$(echo "$2" | tr '[:upper:]' '[:lower:]')
 
 # Check if there are green letters in the input parameters
 if [[ $colors == *"G"* ]]; then
@@ -60,7 +60,7 @@ if [[ $colors == *"S"* ]]; then
   done
 
   # Filtering now the word_bank based on the y_letters
-  word_bank=$(echo "$word_bank" | grep -E "[$s_letters]")
+  word_bank=$(echo "$word_bank" | grep -EV "[$s_letters]")
 fi
 
 echo "$word_bank"
