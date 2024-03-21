@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Filtering all words that comprise of 5 letters into word_bank
-word_bank=$(curl https://raw.githubusercontent.com/dwyl/english-words/master/words.txt | grep -xE '[[:alpha:]]{5}')
+word_bank=$(curl https://raw.githubusercontent.com/dwyl/english-words/master/words.txt | grep -xE '[[:alpha:]]{5}'| tr '[:upper:]' '[:lower:]')
 
 # Check tha two inputs where entered correctly
 
@@ -63,3 +63,4 @@ if [[ $colors == *"S"* ]]; then
   word_bank=$(echo "$word_bank" | grep -E "[$s_letters]")
 fi
 
+echo "$word_bank"
