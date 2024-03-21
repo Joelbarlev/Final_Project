@@ -7,7 +7,7 @@ word_bank=$(curl https://raw.githubusercontent.com/dwyl/english-words/master/wor
 
 # Catching the inputs into parameters in lower-case
 word=$(echo "$1" | tr '[:upper:]' '[:lower:]')
-colors=$(echo "$2" | tr '[:upper:]' '[:lower:]')
+colors=$2
 
 # Check if there are green letters in the input parameters
 if [[ $colors == *"G"* ]]; then
