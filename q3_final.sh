@@ -9,13 +9,11 @@ if [ "$#" -ne 2 ]; then
     exit 1
 fi
 
-# Check if both inputs are exactly 5 characters long
-
 # Catching the inputs into parameter in upper-case
 word=$(echo "$1" | tr '[:lower:]' '[:upper:]')
 colors=$(echo "$2" | tr '[:lower:]' '[:upper:]')
 
-# Filtering silver letters
+# Checking for silver letters
 if [[ $colors == *"S"* ]]; then
 
   # Creating y_letters with all silver letters in word
@@ -43,15 +41,7 @@ fi
 
 
 
-
-
-
-
-
-
-
-
-# Filtering yellow letters
+# Checking for yellow letters
 if [[ $colors == *"Y"* ]]; then
 
 #PART 1 : Fetch words that contain yellow letters ( no matter the position)
@@ -111,7 +101,7 @@ declare -a y_position
 
 fi
 
-# Filtering green letters
+# Checking for green letters
 if [[ $colors == *"G"* ]]; then
 
 declare -a g_letters
