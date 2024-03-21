@@ -15,6 +15,7 @@ fi
 word=$(echo "$1" | tr '[:lower:]' '[:upper:]')
 colors=$(echo "$2" | tr '[:lower:]' '[:upper:]')
 
+# Filtering silver letters
 if [[ $colors == *"S"* ]]; then
 
   # Creating y_letters with all silver letters in word
@@ -36,9 +37,9 @@ for (( i=0; i<${#s_letters}; i++ )); do
     word_bank=$(echo "$word_bank" | grep -vE "[$pattern]")
 done
 
-# Use grep to filter out words containing any of the characters in $X
-
 fi
 
-echo "$word_bank"
+# Filtering yellow letters
+
+echo "$word_bank" | head -10
 
