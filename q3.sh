@@ -40,4 +40,8 @@ if [[ $colors == *"Y"* ]]; then
     fi
   done
 
+  # Filtering now the word_bank based on the y_letters
+  word_bank=$(echo "word_bank" | grep -E "[$y_letters]")
 fi
+
+# Similar to the yellow letters now will do the inverse of s_letters
