@@ -41,7 +41,25 @@ if [[ $colors == *"Y"* ]]; then
   done
 
   # Filtering now the word_bank based on the y_letters
-  word_bank=$(echo "word_bank" | grep -E "[$y_letters]")
+  word_bank=$(echo "$word_bank" | grep -E "[$y_letters]")
 fi
 
 # Similar to the yellow letters now will do the inverse of s_letters
+if [[ $colors == *"S"* ]]; then
+
+  # Creating y_letters with all silver letters in word
+  s_letters=""
+
+  # Loop through each character position in 'colors'
+  for ((i = 1; i <= ${#colors}; i++)); do
+    # Check if the character at position 'i' in 'colors' is "S"
+    if [ "${colors:i-1:1}" = "S" ]; then
+        # Append the character at position 'i' in 'word' to 'extracted_letters'
+        s_letters+=${word:i-1:1}
+    fi
+  done
+
+  # Filtering now the word_bank based on the y_letters
+  word_bank=$(echo "$word_bank" | grep -E "[$s_letters]")
+fi
+
