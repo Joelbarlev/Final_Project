@@ -4,7 +4,6 @@
 word_bank=$(curl https://raw.githubusercontent.com/dwyl/english-words/master/words.txt | grep -xE '[[:alpha:]]{5}'| tr '[:upper:]' '[:lower:]')
 
 # Check tha two inputs where entered correctly
-
 # Catching the inputs into parameters in lower-case
 word=$(echo "$1" | tr '[:upper:]' '[:lower:]')
 colors=$2
