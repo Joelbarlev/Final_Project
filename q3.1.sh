@@ -19,7 +19,7 @@ fi
 word=$(echo "$1" | tr '[:lower:]' '[:upper:]')
 colors=$(echo "$2" | tr '[:lower:]' '[:upper:]')
 
-
+#hello world
 
 
 
