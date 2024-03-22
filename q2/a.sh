@@ -1,59 +1,47 @@
 #!/bin/bash
 
-# Full path to PostgreSQL 16 bin directory
-PG_BIN_DIR="/Library/PostgreSQL/16/bin"
+# MySQL Connection Details
+DB_USER="root"
+DB_PASSWORD="XXXXX"
 
-# Full path to PostgreSQL data directory
-PG_DATA_DIR="/Library/PostgreSQL/16/data"
+# Database name
+DB_NAME="q2"
 
-# Check if pg_ctl and createdb commands are available
-if [ ! -x "$PG_BIN_DIR/pg_ctl" ]; then
-    echo "pg_ctl command not found. Please check your PostgreSQL installation."
-    exit 1
-fi
+# Table name to create
+TABLE_NAME="tortilla_prices"
 
-if [ ! -x "$PG_BIN_DIR/createdb" ]; then
-    echo "createdb command not found. Please check your PostgreSQL installation."
-    exit 1
-fi
+# SQL command to create database if not exists
+CREATE_DB_SQL="CREATE DATABASE IF NOT EXISTS $DB_NAME;"
 
-# Start PostgreSQL service if not already running
-if ! "$PG_BIN_DIR/pg_ctl" status &> /dev/null; then
-    echo "Starting PostgreSQL service..."
-    "$PG_BIN_DIR/pg_ctl" -D "$PG_DATA_DIR" start
-fi
+# SQL command to create table with predefined columns
+CREATE_TABLE_SQL="CREATE TABLE IF NOT EXISTS $DB_NAME.$TABLE_NAME (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    State VARCHAR(255),
+    City VARCHAR(255),
+    Year INT,
+    Month INT,
+    Day INT,
+    Store_type VARCHAR(255),
+    Price_per_kilogram FLOAT
+);"
 
-# Create a new PostgreSQL database
-echo "Creating a new PostgreSQL database..."
-"$PG_BIN_DIR/createdb" mydatabase
+# Import CSV data into MySQL table
+IMPORT_DATA_SQL="LOAD DATA LOCAL INFILE 'tortilla_prices.csv' INTO TABLE $DB_NAME.$TABLE_NAME
+FIELDS TERMINATED BY ','
+ENCLOSED BY '\"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;"
 
-# Create a new table in the database
-echo "Creating a new table..."
-cat <<EOF | "$PG_BIN_DIR/psql" -d mydatabase
-CREATE TABLE IF NOT EXISTS tortilla_prices (
-    id SERIAL PRIMARY KEY,
-    region VARCHAR,
-    state VARCHAR,
-    location VARCHAR,
-    price_kg NUMERIC,
-    currency VARCHAR,
-    year INT,
-    month INT,
-    day INT
-);
-EOF
+# Connect to MySQL and execute SQL commands
+echo "$CREATE_DB_SQL" | mysql --local-infile=1 -u$DB_USER -p$DB_PASSWORD
+echo "$CREATE_TABLE_SQL" | mysql --local-infile=1 -u$DB_USER -p$DB_PASSWORD
+echo "$IMPORT_DATA_SQL" | mysql --local-infile=1 -u$DB_USER -p$DB_PASSWORD
 
-# Insert data from CSV file into the table
-echo "Inserting data from CSV file..."
-"$PG_BIN_DIR/psql" -d mydatabase -c "\copy tortilla_prices FROM 'tortilla_prices.csv' WITH (FORMAT CSV, HEADER);"
+# Select first 3 rows from the table
+SELECT_SQL="SELECT * FROM $DB_NAME.$TABLE_NAME LIMIT 1, 3;"
 
-echo "Data inserted successfully."
+# Print the first 3 rows from the table
+echo "First 3 rows of the $TABLE_NAME table:"
+echo "$SELECT_SQL" | mysql -u$DB_USER -p$DB_PASSWORD
 
-# Print head of the table
-echo "Printing head of the table:"
-"$PG_BIN_DIR/psql" -d mydatabase -c "SELECT * FROM tortilla_prices LIMIT 5;"
-
-# Stop PostgreSQL service
-"$PG_BIN_DIR/pg_ctl" -D "$PG_DATA_DIR" stop
-
-echo "Script execution completed."
+echo "Database $DB_NAME, table $TABLE_NAME created, data imported, and first 3 rows printed."
