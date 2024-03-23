@@ -2,7 +2,7 @@
 
 # MySQL Connection Details
 DB_USER="root"
-DB_PASSWORD="XXXXX"
+DB_PASSWORD="XXXXXX"
 
 # Database name
 DB_NAME="q2"
