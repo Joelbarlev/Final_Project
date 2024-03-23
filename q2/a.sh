@@ -2,7 +2,7 @@
 
 # MySQL Connection Details
 DB_USER="root"
-DB_PASSWORD="XXXXX"
+DB_PASSWORD="Jo123456"
 
 # Database name
 DB_NAME="q2"
@@ -55,8 +55,12 @@ SELECT_SQL="SELECT * FROM $DB_NAME.$TABLE_NAME;"
 # File path to save the table data
 OUTPUT_FILE="tortilla_prices_table.txt"
 
-# Save the contents of the table to a file
-echo "Saving table $TABLE_NAME to $OUTPUT_FILE..."
-echo "$SELECT_SQL" | mysql -u$DB_USER -p$DB_PASSWORD > $OUTPUT_FILE
-
-echo "Database $DB_NAME, table $TABLE_NAME created, data imported, and table saved to $OUTPUT_FILE."
+# Check if the output file already exists
+if [ ! -e "$OUTPUT_FILE" ]; then
+    # Save the contents of the table to a file
+    echo "Saving table $TABLE_NAME to $OUTPUT_FILE..."
+    echo "$SELECT_SQL" | mysql -u$DB_USER -p$DB_PASSWORD > $OUTPUT_FILE
+    echo "Database $DB_NAME, table $TABLE_NAME created, data imported, and table saved to $OUTPUT_FILE."
+else
+    echo "Output file $OUTPUT_FILE already exists. Skipping saving the table data."
+fi
