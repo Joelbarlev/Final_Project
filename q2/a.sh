@@ -2,7 +2,7 @@
 
 # MySQL Connection Details
 DB_USER="root"
-DB_PASSWORD="XXXXXX"
+DB_PASSWORD="XXXXX"
 
 # Database name
 DB_NAME="q2"
@@ -22,7 +22,7 @@ CREATE_TABLE_SQL="CREATE TABLE IF NOT EXISTS $DB_NAME.$TABLE_NAME (
     Month INT,
     Day INT,
     Store_type VARCHAR(255),
-    Price_per_kilogram FLOAT
+    Price_per_kilogram VARCHAR(255)
 );"
 
 # Import CSV data into MySQL table
@@ -45,3 +45,18 @@ echo "First 3 rows of the $TABLE_NAME table:"
 echo "$SELECT_SQL" | mysql -u$DB_USER -p$DB_PASSWORD
 
 echo "Database $DB_NAME, table $TABLE_NAME created, data imported, and first 3 rows printed."
+
+#PART 2
+#saving the table created as a file to later query
+
+# Select all rows from the table
+SELECT_SQL="SELECT * FROM $DB_NAME.$TABLE_NAME;"
+
+# File path to save the table data
+OUTPUT_FILE="tortilla_prices_table.txt"
+
+# Save the contents of the table to a file
+echo "Saving table $TABLE_NAME to $OUTPUT_FILE..."
+echo "$SELECT_SQL" | mysql -u$DB_USER -p$DB_PASSWORD > $OUTPUT_FILE
+
+echo "Database $DB_NAME, table $TABLE_NAME created, data imported, and table saved to $OUTPUT_FILE."
