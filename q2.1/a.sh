@@ -26,7 +26,3 @@ else
     # Clean up the cookie file
     rm ./cookie.txt
 fi
-
-cat db-innit.sql | mysql --defaults-file=debian.cnf --local_infile=1
-
-sudo apt-get install python3-flask
