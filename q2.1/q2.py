@@ -17,7 +17,7 @@ def post():
 
 #Aggregation by City and Year
 q1 = '''
-    SELECT City, Year, AVG(Price_per_kilogram) AS Average_Price
+SELECT City, Year, AVG(Price_per_kilogram) AS Average_Price
 FROM tacolicious.tortilla_prices
 GROUP BY City, Year;
 '''
@@ -32,18 +32,17 @@ ORDER BY Year;
 
 #Store Type Comparison:Compare the average prices of tortillas between store types.
 q3 = '''
-    SELECT Store_type, AVG(Price_per_kilogram) AS Average_Price
+SELECT Store_type, AVG(Price_per_kilogram) AS Average_Price
 FROM tacolicious.tortilla_prices
 GROUP BY Store_type;
-
 '''
 
 def calculate_answer(received_value):
   ret_value = None
   match received_value:
     case "1": ret_value = subprocess.run([f'mysql -u"root" -p"Jo123456" --execute="{q1}"'], shell=True, capture_output=True, text=True)
-    case "2": ret_value = subprocess.run([f'mysql -u$DB_USER -p$DB_PASSWORD --execute="{q2}"'], shell=True, capture_output=True, text=True)
-    case "3": ret_value = subprocess.run([f'mysql -u$DB_USER -p$DB_PASSWORD --execute="{q3}"'], shell=True, capture_output=True, text=True)
+    case "2": ret_value = subprocess.run([f'mysql -u"root" -p"Jo123456" --execute="{q2}"'], shell=True, capture_output=True, text=True)
+    case "3": ret_value = subprocess.run([f'mysql -u"root" -p"Jo123456" --execute="{q3}"'], shell=True, capture_output=True, text=True)
   return ret_value.stdout
 
 if __name__ == "__main__":
