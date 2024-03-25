@@ -2,11 +2,12 @@
 
 from flask import Flask, request
 import subprocess
+
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def get():
-  return str("Usage:") #Prints usage information following a GET
+  return str("Usage:\n1) Agg By City&Year\n2) Temporal Analysis\n3) Store Type Comparison\n\n") #Prints usage information following a GET
 
 @app.route('/', methods=['POST'])
 def post():
@@ -38,8 +39,12 @@ GROUP BY Store_type;
 '''
 
 def calculate_answer(received_value):
-  #write me
-  return
+  ret_value = None
+  match received_value:
+    case "1": ret_value = subprocess.run([f'mysql -u$DB_USER -p$DB_PASSWORD --execute="{q1}"'], shell=True, capture_output=True, text=True)
+    case "2": ret_value = subprocess.run([f'mysql -u$DB_USER -p$DB_PASSWORD --execute="{q2}"'], shell=True, capture_output=True, text=True)
+    case "3": ret_value = subprocess.run([f'mysql -u$DB_USER -p$DB_PASSWORD --execute="{q3}"'], shell=True, capture_output=True, text=True)
+  return ret_value.stdout
 
 if __name__ == "__main__":
   app.run(host='0.0.0.0')
