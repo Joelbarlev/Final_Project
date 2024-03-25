@@ -1,9 +1,18 @@
 #!/bin/bash
 
 #install MySQL
-sudo apt-get install mysql-server
+#sudo apt-get install mysql-server
 
 # We had trouble using the Kaggle api in a generic way so we uploaded the csv to our drive
+#zip tortilla_prices.zip tortilla_prices.csv
+# Check if a zip file exists
+if [ -f *.zip ]; then
+    # Unzip the file
+    unzip *.zip
+    echo "File unzipped successfully."
+else
+    echo "No zip file found."
+fi
 
 # Define the file name
 file_name="tortilla_prices.csv"
