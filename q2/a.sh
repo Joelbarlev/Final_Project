@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#install MySQL
+sudo apt-get install mysql-server
+
 # MySQL Connection Details
 DB_USER="root"
 DB_PASSWORD="Jo123456"
