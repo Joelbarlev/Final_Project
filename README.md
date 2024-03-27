@@ -5,14 +5,19 @@
 
 ![Me Gusta Linux (1)](https://github.com/Joelbarlev/Final_Project/assets/164216580/d146eb28-1859-4c6f-9dfb-b48f878ef655)
 
-The first assignment delves into database management and HTTP server creation, utilizing the "Tortilla Prices in Mexico" dataset sourced from Kaggle.
+
+
+For the part of the assignment, we delve into database management and HTTP server creation, utilizing the "Tortilla Prices in Mexico" dataset sourced from Kaggle. The database was built in SQL with Bash, and a Python server using Flask was created to answer queries regarding:
+
+- Average price by city and year
+- Price avg over time
+- Price comparison by store type
+  
+Lastly, a more complex query was performed to extract non-trivial insights (C). The data suggests a persistent increase in price(14 out of 17 years) and a big dip between 2018-2020, followed by an upward trend. While broader economic factors may not precisely pinpoint the cause, the COVID-19 pandemic emerges as a likely explanation. Restaurant closures might have reduced demand for bulk tortillas, while increased home cooking may not have fully offset that effect. Labor shortages or government interventions during the pandemic could have further influenced prices. Additional research into the tortilla industry's performance specifically during COVID-19 would be beneficial.
+
+![Bard_Chart_Image](https://github.com/Joelbarlev/Final_Project/assets/164216580/3a58a498-e41d-4ff6-b0b9-2c4a8197de16)
 
 Link to DB: https://www.kaggle.com/datasets/richave/tortilla-prices-in-mexico.
-
-With Bash we built a database in SQL and a Python server (with Flask) to answer queries:
-Average price by city and year
-Price trends over time
-Price comparison by store type
 
 
 # Part 2: Wordle Helper Script with Bash (Question 3)
@@ -20,4 +25,4 @@ Price comparison by store type
 
 The second part of the assignment involves coding a script for the popular word game, Wordle (https://www.nytimes.com/games/wordle/index.html). 
 
-The task requires parsing user input, processing it according to game rules, and generating valid word combinations based on the provided criteria. It's a blend of problem-solving and algorithmic thinking, focusing on string manipulation and logic implementation. This segment provides an opportunity for creative problem-solving while honing skills in algorithm development and game mechanics understanding.
+The task requires parsing user input, processing it according to game rules, and generating valid word combinations based on the provided criteria. It's a blend of problem-solving and algorithmic thinking, focusing on string manipulation and logic implementation. This segment provides an opportunity for creative problem-solving while honing coding skills in Bash.
