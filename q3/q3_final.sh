@@ -16,7 +16,7 @@ colors=$(echo "$2" | tr '[:lower:]' '[:upper:]')
 # Checking for silver letters
 if [[ $colors == *"S"* ]]; then
 
-  # Creating y_letters with all silver letters in word
+  # Creating s_letters with all silver letters in word
   s_letters=""
 
   # Loop through each character position in 'colors'
@@ -28,7 +28,7 @@ if [[ $colors == *"S"* ]]; then
     fi
   done
 
-  # Filtering now the word_bank based on the y_letters
+  # Filtering now the word_bank based on the s_letters
 for (( i=0; i<${#s_letters}; i++ )); do
     # Construct the regular expression pattern to exclude words containing the current character
     pattern="${s_letters:i:1}"
@@ -36,8 +36,6 @@ for (( i=0; i<${#s_letters}; i++ )); do
 done
 
 fi
-
-
 
 
 

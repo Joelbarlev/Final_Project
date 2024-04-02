@@ -20,8 +20,8 @@ fi
 #Data-base setup
 
 # MySQL Connection Details
-DB_USER="root"
-DB_PASSWORD="Jo123456"
+DB_USER="root" #Insert User
+DB_PASSWORD="Jo123456"  #Insert Password
 # Database name
 DB_NAME="tacolicious"
 
