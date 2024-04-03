@@ -70,14 +70,14 @@ FROM
     price_change;
 '''
 
+#Instert password and user
 def calculate_answer(received_value):
   ret_value = None
   match received_value:
     case "1": ret_value = subprocess.run([f'mysql -u"root" -p"Jo123456" --execute="{q1}"'], shell=True, capture_output=True, text=True)
     case "2": ret_value = subprocess.run([f'mysql -u"root" -p"Jo123456" --execute="{q2}"'], shell=True, capture_output=True, text=True)
     case "3": ret_value = subprocess.run([f'mysql -u"root" -p"Jo123456" --execute="{q3}"'], shell=True, capture_output=True, text=True)
-    case "4": ret_value = subprocess.run([f'mysql -u"root" -p"Jo123456" --execute="{c}"'], shell=True, capture_output=True,
-                                  text=True)
+    case "4": ret_value = subprocess.run([f'mysql -u"root" -p"Jo123456" --execute="{c}"'], shell=True, capture_output=True, text=True)
   return ret_value.stdout
 
 if __name__ == "__main__":
