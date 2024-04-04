@@ -1,14 +1,14 @@
 #!/bin/bash
 
 #install MySQL REMOVE COMMENTS
-#sudo apt-get install mysql-server
+sudo apt-get install mysql-server
 
 # We had trouble using the Kaggle api in a generic way so we uploaded the csv to our drive
 #zip tortilla_prices.zip tortilla_prices.csv
 # Check if a zip file exists
-# shellcheck disable=SC2144
 
 #Unzip file
+# shellcheck disable=SC2144
 if [ -f *.zip ]; then
     # Unzip the file
     unzip *.zip
@@ -65,12 +65,12 @@ SELECT_SQL="SELECT * FROM $DB_NAME.$TABLE_NAME LIMIT 3;"
 echo "First 3 rows of the $TABLE_NAME table:"
 echo "$SELECT_SQL" | mysql -u$DB_USER -p$DB_PASSWORD
 
-echo "Database $DB_NAME, table $TABLE_NAME created, data imported, and first 3 rows printed."
+echo "Database $DB_NAME, table $TABLE_NAME created, data imported, and first 3 rows printed :)"
 
 # B1: download python3-flask
-#sudo apt-get install python3-flask
+sudo apt-get install python3-flask
 
 # Install Python3-Flask using pip3 for mac
-pip3 install flask
+#pip3 install flask
 
 # The 3 queries are in the python file
