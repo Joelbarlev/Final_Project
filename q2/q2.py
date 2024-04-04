@@ -7,7 +7,14 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def get():
-  return str("Usage:\n1) Agg By City&Year\n2) Temporal Analysis\n3) Store Type Comparison\n4) Price Trend report (C)\n\n\n") #Prints usage information following a GET
+  return str("Options:\n1) Agg By City&Year\n2) Temporal Analysis\n3) Store Type Comparison\n4) Price Trend report (C)\n\n\n") #Displays instructions after performing a GET request.
+
+
+
+
+
+
+
 
 @app.route('/', methods=['POST'])
 def post():
