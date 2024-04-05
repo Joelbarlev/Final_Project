@@ -3,9 +3,6 @@
 The theoretical questions consist of three parts. The first two parts discuss vulnerabilities in Hypervisor Type 1 and Type 2, and their respective consequences for cloud companies. In the third part, we explore the differences in exploiting out-of-bound write vulnerabilities between the stack and the heap.
 
 
-https://github.com/Joelbarlev/Final_Project/assets/164216580/2ea08f5c-de72-4c5a-a45a-30352cb580df
-
-
 # Part 2: Exploring Tortilla Price Trends: A Kaggle Dataset Analysis (q2)
 
 
