@@ -3,6 +3,7 @@
 # Filtering all words that comprise of 5 letters into word_bank in caps
 word_bank=$(curl https://raw.githubusercontent.com/dwyl/english-words/master/words.txt | grep -xE '[[:alpha:]]{5}'| tr '[:lower:]' '[:upper:]')
 
+# As writen in the question we assumed that the 2 inputs are 5 letters long and fit our code requirements and only checked for two inputs
 # Check if the correct number of arguments is provided
 if [ "$#" -ne 2 ]; then
     echo "Usage: $0 <word> <colors>"
@@ -16,69 +17,53 @@ colors=$(echo "$2" | tr '[:lower:]' '[:upper:]')
 # Checking for silver letters
 if [[ $colors == *"S"* ]]; then
 
-  # Creating s_letters with all silver letters in word
+  # Creating y_letters with all silver letters in word
   s_letters=""
 
   # Loop through each character position in 'colors'
   for ((i = 1; i <= ${#colors}; i++)); do
-    # Check if the character at position 'i' in 'colors' is "S"
-    if [ "${colors:i-1:1}" = "S" ]; then
-        # Append the character at position 'i' in 'word' to 'extracted_letters'
+  # Check if the character at position 'i' in 'colors' is "S"
+  if [ "${colors:i-1:1}" = "S" ]; then
         s_letters+=${word:i-1:1}
-    fi
+  fi
   done
 
   # Filtering now the word_bank based on the s_letters
-for (( i=0; i<${#s_letters}; i++ )); do
+  for (( i=0; i<${#s_letters}; i++ )); do
     # Construct the regular expression pattern to exclude words containing the current character
     pattern="${s_letters:i:1}"
     word_bank=$(echo "$word_bank" | grep -vE "[$pattern]")
-done
+  done
 
 fi
 
-
-
 # Checking for yellow letters
 if [[ $colors == *"Y"* ]]; then
+  # Creating y_letters with all yellow letters in word
 
-#PART 1 : Fetch words that contain yellow letters ( no matter the position)
- # Initialize an empty string to store yellow letters
-    yellow_letters=""
+  declare -a y_letters
+  declare -a y_position
 
-    # Loop through each character position in 'colors'
+  # Loop through each character position in 'colors'
+  for ((i = 1; i <= ${#colors}; i++)); do
+  # Check if the character at position 'i' in 'colors' is "Y"
+  if [ "${colors:i-1:1}" = "Y" ]; then
+        y_letters+=${word:i-1:1}
+  fi
+  done
+
+  # Filtering now the word_bank based on the y_letters
+  for (( i=0; i<${#y_letters}; i++ )); do
+    # Construct the regular expression pattern to exclude words containing the current character
+    pattern="${y_letters:i:1}"
+    word_bank=$(echo "$word_bank" | grep -E "[$pattern]")
+  done
+
+  #part2
+  # Loop through each character position in 'colors'
     for ((i = 0; i < ${#colors}; i++)); do
         # Check if the character at position 'i' in 'colors' is "Y"
         if [ "${colors:i:1}" = "Y" ]; then
-            # Append the character at position 'i' in 'word' to 'yellow_letters'
-            yellow_letters+="${word:i:1}"
-        fi
-    done
-
-    # Initialize an empty string to store the grep pattern
-    grep_pattern=""
-
-    # Loop through each character in 'yellow_letters' to construct the grep pattern
-    for ((i = 0; i < ${#yellow_letters}; i++)); do
-        # Append the character at position 'i' in 'yellow_letters' to the grep pattern
-        grep_pattern+="${yellow_letters:i:1}"
-    done
-
-    # Fetch words from the word_bank that contain the yellow letters
-    word_bank=$(echo "$word_bank" | grep -i "$grep_pattern")
-
-
-#PART 2 : Exclude the words that the yellow letter is found in the same position as word
-# Define arrays for y_letters and y_position
-declare -a y_letters
-declare -a y_position
-
-    # Loop through each character position in 'colors'
-    for ((i = 0; i < ${#colors}; i++)); do
-        # Check if the character at position 'i' in 'colors' is "Y"
-        if [ "${colors:i:1}" = "Y" ]; then
-            # Append the character at position 'i' in 'word' to 'y_letters'
-            y_letters+=(${word:i:1})
             # Append the position to 'y_position'
             y_position+=("$((i + 1))")
         fi
@@ -92,13 +77,12 @@ declare -a y_position
         # Construct the regular expression pattern for the current letter at its position
         pattern="^.{$((position - 1))}${letter}.*$"
         # Use grep with the pattern to filter words
-        filtered_words=$(echo "$filtered_words" | grep -Ev "$pattern")
+        filtered_words=$(echo "$filtered_words" | grep -vE "$pattern")
     done
-
     word_bank="$filtered_words"
 
-fi
 
+fi
 # Checking for green letters
 if [[ $colors == *"G"* ]]; then
 
@@ -132,5 +116,3 @@ fi
 
 
 echo "$word_bank"
-
-
