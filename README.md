@@ -1,9 +1,9 @@
 # Final_Project 
-# Part 1: Theoretical questions (q1)  
+# Theoretical questions (q1)  
 The theoretical questions consist of three parts. The first two parts discuss vulnerabilities in Hypervisor Type 1 and Type 2, and their respective consequences for cloud companies. In the third part, we explore the differences in exploiting out-of-bound write vulnerabilities between the stack and the heap.
 
 
-# Part 2: Exploring Tortilla Price Trends: A Kaggle Dataset Analysis (q2)
+# Exploring Tortilla Price Trends: A Kaggle Dataset Analysis (q2)
 
 
 
@@ -24,7 +24,7 @@ Lastly, a more complex query was performed to extract non-trivial insights (C). 
 Link to DB: https://www.kaggle.com/datasets/richave/tortilla-prices-in-mexico.
 
 
-# Part 3: Wordle Helper Script with Bash (q3)
+#  Wordle Helper Script with Bash (q3)
 ![download](https://github.com/Joelbarlev/Final_Project/assets/164216580/a2214a9a-890e-43cb-bfe1-5c2358ae0f72)
 
 The second part of the assignment involves coding a script for the popular word game, Wordle (https://www.nytimes.com/games/wordle/index.html). 
