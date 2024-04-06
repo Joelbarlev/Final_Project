@@ -11,7 +11,7 @@ The theoretical questions consist of three parts. The first two parts discuss vu
 
 
 
-For the part of the assignment, we delve into database management and HTTP server creation, utilizing the "Tortilla Prices in Mexico" dataset sourced from Kaggle. The database was built in SQL with Bash, and a Python server using Flask was created to answer queries regarding:
+For this part of the assignment, we delve into database management and HTTP server creation, utilizing the "Tortilla Prices in Mexico" dataset sourced from Kaggle. The database was built in SQL with Bash, and a Python server using Flask was created to answer queries regarding:
 
 - Average price by city and year
 - Price avg over time
