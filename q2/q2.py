@@ -7,11 +7,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def get():
-  return str("Options:\n1) Agg By City&Year\n2) Temporal Analysis\n3) Store Type Comparison\n4) Price Trend report (C)\n\n\n") #Displays instructions after performing a GET request.
-
-
-
-
+  return str("Options:\n1) Agg By City&Year\n2) Temporal Analysis\n3) Store Type Comparison\n4) Price Trend report (C)\nUsage:\ncurl 127.0.0.1:5000 -X POST -d '<input>'\n\n") #Displays instructions after performing a GET request.
 
 
 
@@ -77,7 +73,7 @@ FROM
     price_change;
 '''
 
-#Instert password and user
+#Instert password and user to mysql bellow -> [f'mysql -u<user> -p<password> --execute="{q1}"']
 def calculate_answer(received_value):
   ret_value = None
   match received_value:
